@@ -2,7 +2,7 @@
 set -e 
 
 echo "--- Step 1: Downloading the Wan2.2 Model ---"
-huggingface-cli download Wan-AI/Wan2.2-T2V-A14B --local-dir ./Wan2.2-T2V-A14B
+huggingface-cli download Wan-AI/Wan2.2-TI2V-5B --local-dir ./Wan2.2-TI2V-5B
 
 echo "--- Step 2: Processing Prompts ---"
 if [ ! -f "prompts.txt" ]; then
@@ -35,15 +35,13 @@ while IFS= read -r prompt || [ -n "$prompt" ]; do
     echo "[->] Generating video for: '$prompt'"
     
     # Run the generation
-    torchrun --nproc_per_node=8 \ 
-        generate.py \
-        --task t2v-A14B \
-        --size 1280*720 \
-        --ckpt_dir ./Wan2.2-T2V-A14B \
-        --dit_fsdp \
-        --t5_fsdp \
-        --ulysses_size 8 \
+       python generate.py \
+        --task ti2v-5B \
+        --size 832*480 \
+        --ckpt_dir ./Wan2.2-TI2V-5B \
+        --convert_model_dtype \
         --prompt "$prompt"
+        
     
     # 1. Find the newest .mp4 file in the current folder
     NEWEST_MP4=$(ls -t *.mp4 2>/dev/null | head -n 1)
