@@ -13,7 +13,7 @@ RUN git clone https://github.com/Wan-Video/Wan2.2.git
 WORKDIR /workspace/Wan2.2
 
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir decord
+RUN pip install --no-cache-dir decord librosa
 RUN pip install --no-cache-dir "huggingface_hub[cli]"
 
 
