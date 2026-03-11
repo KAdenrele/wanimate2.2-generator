@@ -37,7 +37,7 @@ while IFS= read -r prompt || [ -n "$prompt" ]; do
     # Run the generation
        python generate.py \
         --task ti2v-5B \
-        --size 832*480 \
+        --size 1280*704 \
         --ckpt_dir ./Wan2.2-TI2V-5B \
         --convert_model_dtype \
         --prompt "$prompt"
