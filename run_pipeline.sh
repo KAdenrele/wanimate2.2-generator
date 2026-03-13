@@ -23,7 +23,7 @@ while IFS= read -r prompt || [ -n "$prompt" ]; do
     fi
 
     # Create a clean, safe filename from the prompt to check for existence
-    SAFE_NAME=$(echo "$prompt" | cut -c 1-50 | tr -dc '[:alnum:]_ ' | tr ' ' '_').mp4
+    SAFE_NAME=$(echo "$prompt" | tail -c 50 | tr -dc '[:alnum:]_ ' | tr ' ' '_').mp4
 
     # Check if the file already exists in the output directory
     if [ -f "outputs/$SAFE_NAME" ]; then
