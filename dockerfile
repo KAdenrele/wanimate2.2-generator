@@ -12,13 +12,14 @@ WORKDIR /workspace
 RUN git clone https://github.com/Wan-Video/Wan2.2.git
 WORKDIR /workspace/Wan2.2
 
-COPY prompts.txt .
+
 
 
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --no-cache-dir decord librosa peft
 RUN pip install --no-cache-dir "huggingface_hub[cli]"
 COPY run_pipeline.sh .
+COPY prompts.txt .
 RUN chmod +x run_pipeline.sh
 
 
