@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e 
 
-echo "--- Step 1: Downloading the Wan2.2 Model ---"
+echo "Downloading the Wan2.2 Model"
 huggingface-cli download Wan-AI/Wan2.2-TI2V-5B --local-dir ./Wan2.2-TI2V-5B
 
-echo "--- Step 2: Processing Prompts ---"
+echo "rocessing Prompts "
 if [ ! -f "prompts.txt" ]; then
     echo "[!] Error: prompts.txt not found!"
     exit 1
@@ -32,7 +32,7 @@ while IFS= read -r prompt || [ -n "$prompt" ]; do
     fi
 
     echo ""
-    echo "[->] Generating video for: '$prompt'"
+    echo "Generating video for: '$prompt'"
     
     # Run the generation
        python generate.py \
@@ -56,4 +56,4 @@ while IFS= read -r prompt || [ -n "$prompt" ]; do
 
 done < prompts.txt
 
-echo "--- Pipeline Complete! ---"
+echo "Pipeline Complete!"
